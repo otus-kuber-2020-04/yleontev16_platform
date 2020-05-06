@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: web
+  name: web
+spec:
+  containers:
+  - image: yleontev16/otus:kuber-intro-v1
+    name: web
+    volumeMounts:
+    - name: app
+      mountPath: /app
+  initContainers:
+  - name: otus-index-init
+    image: busybox:1.31.0
+    command: ['sh', '-c', 'wget -O- https://tinyurl.com/otus-k8s-intro | sh']
+    volumeMounts:
+    - name: app
+      mountPath: /app
+  volumes:
+  - name: app
+    emptyDir: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+

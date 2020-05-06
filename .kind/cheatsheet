@@ -1,0 +1,3 @@
+1. Основные кор-поды (контроллеры, etcd, api-server, scheduler) являются статик подами под управлением kubelet-а (непосредственно, он сам их мониторит и переподнимает) - https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/
+2. kube-proxy - под управлением DaemonSet (https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/) - раскатываются демоном на каждой ноде по установленным правилам (в моем случае - на каждой ноде, в т.ч. мастере)
+3. coredns - критикал аддон под управлением ReplicaSet - раскатывается до desired стейта и решедуллится при необходимости (https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/), гарантированно раскатывается и переподнимается на каждой воркер ноде.
