@@ -4,7 +4,7 @@ metadata:
   name: prometheus-mon-custom-role-bind-all
 subjects:
   - kind: Group
-    name: system:serviceaccount:prometheus
+    name: system:serviceaccounts:prometheus
 roleRef:
   kind: ClusterRole
   name: prometheus-mon-custom-role
